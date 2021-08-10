@@ -32,7 +32,7 @@ export function Calculator() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="b">Expoente</label>
+        <label htmlFor="b">Exponent</label>
         <input
           id="b"
           name="b"
@@ -48,13 +48,13 @@ export function Calculator() {
           type="submit"
           className="bg-gray-900 text-gray-100 rounded p-2 w-full"
         >
-          Calcular
+          Calculate
         </button>
         <button
           type="reset"
           className="border-gray-900 border-2 rounded p-2 w-full"
         >
-          Limpar
+          Reset
         </button>
       </div>
       <output
@@ -62,7 +62,7 @@ export function Calculator() {
         className="flex border-4 border-dashed text-2xl p-5 border-gray-900"
         name="result"
       >
-        Resultado: {result}
+        Result: {result}
       </output>
     </form>
   );

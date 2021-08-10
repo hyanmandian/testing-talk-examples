@@ -29,28 +29,29 @@ export function Posts() {
   return (
     <div className="space-y-5">
       <div className="flex flex-col gap-2">
-        <label htmlFor="search">Busca</label>
+        <label htmlFor="search">Search</label>
         <input
           id="search"
           type="search"
           onChange={handleChange}
           className="p-1 border-2 border-gray-900 rounded"
-          placeholder="Exemplo: 10 years after launching"
+          placeholder="Example: 10 years after launching"
         />
       </div>
 
-      {loading ? (
-        <Loader data-testid="loader" />
-      ) : (
-        <section data-testid="posts" className="space-y-5">
-          {enhancedData.map((post) => (
-            <article className="border space-y-2 border-gray-900 p-4 rounded">
-              <h2 className="text-2xl font-bold">{post.title}</h2>
-              <p>{post.summary}</p>
-            </article>
-          ))}
-        </section>
-      )}
+      <Loader show={loading} data-testid="loader" />
+
+      <section data-testid="posts" className="space-y-5">
+        {enhancedData.map((post) => (
+          <article
+            key={post.title}
+            className="border space-y-2 border-gray-900 p-4 rounded"
+          >
+            <h2 className="text-2xl font-bold">{post.title}</h2>
+            <p>{post.summary}</p>
+          </article>
+        ))}
+      </section>
     </div>
   );
 }
