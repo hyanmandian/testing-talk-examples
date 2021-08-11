@@ -33,7 +33,7 @@ describe("Posts", () => {
 
   afterAll(() => server.close());
 
-  it("Deve filrar os dados", async () => {
+  it("Deve filtrar os dados", async () => {
     render(<Posts />);
 
     const loaderEl = screen.getByTestId("loader");
