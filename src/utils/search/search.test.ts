@@ -16,14 +16,19 @@ describe("Utils > Search", () => {
   it("Deve retornar dados", () => {
     const data = [{ name: "João" }, { name: "José" }];
 
-    expect(search(data, "Jo")).toMatchObject(data);
-    expect(search(data, "João")).toMatchObject([data[0]]);
-    expect(search(data, "José")).toMatchObject([data[1]]);
+    expect(search(data, "Jo")).toMatchObject([
+      { name: "João" },
+      { name: "José" },
+    ]);
+
+    expect(search(data, "João")).toMatchObject([{ name: "João" }]);
+
+    expect(search(data, "José")).toMatchObject([{ name: "José" }]);
   });
 
   it("Deve retornar um array vazio", () => {
-    const data = [{ name: "João" }, { name: "José" }];
     // const data = [{ name: "João", events: [], }, { name: "José", events: [], }];
+    const data = [{ name: "João" }, { name: "José" }];
 
     expect(search(data, "Bruno")).toMatchObject([]);
   });

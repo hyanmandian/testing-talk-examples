@@ -5,7 +5,7 @@ import { setupServer } from "msw/node";
 
 import { Posts } from ".";
 
-const data = [
+const MOCK_DATA = [
   {
     title: "Jaw-Dropping Jupiter",
     summary:
@@ -22,7 +22,7 @@ const data = [
 
 const server = setupServer(
   rest.get("https://api.spaceflightnewsapi.net/v3/blogs", (req, res, ctx) => {
-    return res(ctx.json(data));
+    return res(ctx.json(MOCK_DATA));
   })
 );
 
@@ -37,15 +37,21 @@ describe("Posts", () => {
     render(<Posts />);
 
     const loaderEl = screen.getByTestId("loader");
-
+    
     expect(loaderEl).toBeInTheDocument();
-
+    
     await waitFor(() => {
       expect(loaderEl).not.toBeInTheDocument();
     });
+    
+    const postsEl = screen.getByTestId("posts");
 
-    expect(screen.getByTestId("posts")).toBeInTheDocument();
+    expect(postsEl).toHaveTextContent(/Jaw-Dropping Jupiter/);
+    expect(postsEl).toHaveTextContent(/ACS3, NASA’s Advanced Composite Solar Sail System/);
 
-    userEvent.type(screen.getByRole("searchbox"), "A");
+    userEvent.type(screen.getByRole("searchbox"), "ACS3");
+
+    expect(postsEl).not.toHaveTextContent(/Jaw-Dropping Jupiter/);
+    expect(postsEl).toHaveTextContent(/ACS3, NASA’s Advanced Composite Solar Sail System/);
   });
 });

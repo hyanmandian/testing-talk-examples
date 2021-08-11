@@ -41,17 +41,19 @@ export function Posts() {
 
       <Loader show={loading} data-testid="loader" />
 
-      <section data-testid="posts" className="space-y-5">
-        {enhancedData.map((post) => (
-          <article
-            key={post.title}
-            className="border space-y-2 border-gray-900 p-4 rounded"
-          >
-            <h2 className="text-2xl font-bold">{post.title}</h2>
-            <p>{post.summary}</p>
-          </article>
-        ))}
-      </section>
+      {enhancedData.length > 0 ? (
+        <section data-testid="posts" className="space-y-5">
+          {enhancedData.map((post) => (
+            <article
+              key={post.title}
+              className="border space-y-2 border-gray-900 p-4 rounded"
+            >
+              <h2 className="text-2xl font-bold">{post.title}</h2>
+              <p>{post.summary}</p>
+            </article>
+          ))}
+        </section>
+      ) : null}
     </div>
   );
 }
